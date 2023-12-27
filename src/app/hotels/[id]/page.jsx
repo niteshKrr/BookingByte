@@ -1,13 +1,31 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react'
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { useState, useEffect } from "react";
 
 // MKVCIHvJRUYT54En
 
-const SingleHotel = () => {
+const SingleHotel = ({params}) => {
+  const [hotel, setHotel] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/hotels/${params.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setHotel(data.hotel);
+        setLoading(false);
+      });
+  }, [params.id]);
+
+  if (isLoading)
+    return <p className="grid h-screen place-items-center">Loading...</p>;
+
   return (
     <>
-       <div className="w-7/12 mx-auto my-10 ">
+      <div className="w-7/12 mx-auto my-10 ">
         <Image
           src={hotel?.banner}
           alt="hotel"
@@ -33,6 +51,7 @@ const SingleHotel = () => {
                       <span>
                         <Image
                           src={ele.img}
+                          alt="hotel views"
                           width={200}
                           height={200}
                           className="w-8 h-8 rounded-full"
@@ -44,37 +63,24 @@ const SingleHotel = () => {
                 })
               : ""}
           </ul>
-          {auth ? (
             <Link href={`/payment/${hotel?._id}`}>
               <button className=" w-60 h-14 rounded-lg bg-red-400 my-5 text-lg">
                 Book Now
               </button>
             </Link>
-          ) : (
-            <span className=" text-2xl">
+            <span className=" text-xl ml-5">
               Please{" "}
               <Link href={"/login"} className=" text-blue-500">
                 Log in
               </Link>{" "}
               to get new Offers !
             </span>
-          )}
         </div>
       </div>
     </>
-  )
+  );
 };
 
-export async function getServerSideProps(ctx) {
-    const res = await fetch(`${process.env.BASE_URL}/api/hotels/${ctx.query.id}`);
-    const data = await res.json();
-  
-    return {
-      props: {
-        hotel: data.hotel,
-      },
-    };
-  }
-  
+export default SingleHotel;
 
-export default SingleHotel
+

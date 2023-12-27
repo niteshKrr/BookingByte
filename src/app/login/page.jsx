@@ -2,12 +2,60 @@
 
 import Head from "next/head";
 import { useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useRouter } from 'next/navigation'
+import Swal from "sweetalert2";
 
 const Page = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
+
+  // Swal.fire({
+  //   icon: "error",
+  //   title: "Oops...",
+  //   text: "All fields are necessary.",
+  //   confirmButtonColor: "#D6465B",
+  // });
+
+  // Swal.fire({
+  //   title: "Done",
+  //   text: "Your request has been successfully submitted",
+  //   icon: "success",
+  //   confirmButtonColor: "#D6465B",
+  // });
+
+  const router = useRouter();
+
+  const handleSignup = async() => {
+    const res = await axios.post(`/api/user/register`, {
+      name,
+      email,
+      password,
+    });
+    if (res?.data) {
+      Cookies.set("user", res.data.token, { expires: 7 });
+      alert(res.data.msg);
+    }
+  };
+
+  const handleLogin = async() => {
+    const res = await axios.post(`/api/user/login`, {
+      email,
+      password,
+    });
+    if (res?.data) {
+      Cookies.set("user", res.data.token, { expires: 7 });
+      alert(res.data.msg);
+      router.push('/');
+    }
+  };
+
+  const handleToggle = () => {
+    setLogin(!login);
+  };
 
   return (
     <div>
@@ -42,12 +90,16 @@ const Page = () => {
                 Please enter your phone number to continue
               </p>
 
-              <input
-                type="text"
-                placeholder="Enter your name..."
-                className=" outline-none border my-3 border-black px-3 py-1 w-96 h-10 rounded-lg"
-                onChange={(e) => setName(e.target.value)}
-              />
+              {login ? (
+                ""
+              ) : (
+                <input
+                  type="text"
+                  placeholder="Enter your name..."
+                  className=" outline-none border my-3 border-black px-3 py-1 w-96 h-10 rounded-lg"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              )}
               <input
                 type="email"
                 placeholder="Enter your email..."
@@ -63,11 +115,22 @@ const Page = () => {
               <button
                 type="submit"
                 className=" w-96 h-14 text-lg font-bold bg-red-500 hover:cursor-pointer hover:bg-red-600 text-white my-5 rounded-lg"
-              >Sign up</button>
+                onClick={login ? handleLogin : handleSignup}
+              >
+                {login ? "Login " : " Sign Up"}
+              </button>
               <p className=" my-1 text-xl">
-                <span>Already have an account ?</span>
-                <span className=" ml-1 border-b-2 border-red-500 text-red-600 pb-1 hover:cursor-pointer">
-                  Login
+                <span>
+                  {login
+                    ? "Don`t have an account ?"
+                    : "Already have an account ?"}
+                </span>
+                <span
+                  className=" ml-1 border-b-2 border-red-500 text-red-600 pb-1 hover:cursor-pointer"
+                  onClick={handleToggle}
+                >
+                  {" "}
+                  {login ? "Sign Up" : "Login"}
                 </span>
               </p>
             </div>

@@ -44,6 +44,7 @@ const Hotel = ({ e }) => {
                         <span>
                           <Image
                             src={ele.img}
+                            alt="hotel views"
                             width={200}
                             height={200}
                             className="w-8 h-8 rounded-full"
@@ -61,7 +62,7 @@ const Hotel = ({ e }) => {
               Price : &#8377; {e?.price}
             </button>
             <Link
-              href={"/hotels/12"}
+              href={`/hotels/${e?._id}`}
               className="text-xl font-bold text-red-600 ml-10"
             >
               See Details

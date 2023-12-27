@@ -15,7 +15,7 @@ const Header3 = () => {
         <div className="flex justify-center my-5 mx-20 ">
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search by city above...."
             className=" w-6/12  h-16 outline-none px-3 text-lg border-r-2 border-gray-400 "
             onChange={(e) => {
               setCity(e.target.value);
@@ -31,13 +31,14 @@ const Header3 = () => {
             placeholder="Search..."
             className=" h-16 outline-none px-3 text-lg col-span-1"
           /> */}
-
-          <button
-            // type="submit"
-            className=" h-16 px-3 py-2 w-72 bg-green-400 hover:cursor-pointer hover:bg-green-600 text-white text-xl"
-          >
-            <Link href={"/hotels"}>Search</Link>
-          </button>
+          <Link href={`/hotels?city=${city}`}>
+            <button
+              type="submit"
+              className=" h-16 px-3 py-2 w-72 bg-green-400 hover:cursor-pointer hover:bg-green-600 text-white text-xl"
+            >
+              Search
+            </button>
+          </Link>
         </div>
         <div className="flex mx-20 my-5 font-bold">
           <button
