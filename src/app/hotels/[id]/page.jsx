@@ -4,12 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 // MKVCIHvJRUYT54En
 
-const SingleHotel = ({params}) => {
+const SingleHotel = ({ params }) => {
   const [hotel, setHotel] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/hotels/${params.id}`)
@@ -18,6 +20,13 @@ const SingleHotel = ({params}) => {
         setHotel(data.hotel);
         setLoading(false);
       });
+
+    const cookie = Cookies.get("user");
+    if (cookie) {
+      setAuth(true);
+      return;
+    }
+    setAuth(false);
   }, [params.id]);
 
   if (isLoading)
@@ -25,7 +34,7 @@ const SingleHotel = ({params}) => {
 
   return (
     <>
-      <div className="w-7/12 mx-auto my-10 ">
+      <div className="w-7/12 mx-auto mt-10 ">
         <Image
           src={hotel?.banner}
           alt="hotel"
@@ -63,18 +72,22 @@ const SingleHotel = ({params}) => {
                 })
               : ""}
           </ul>
+          {auth ? (
             <Link href={`/payment/${hotel?._id}`}>
               <button className=" w-60 h-14 rounded-lg bg-red-400 my-5 text-lg">
                 Book Now
               </button>
             </Link>
-            <span className=" text-xl ml-5">
+          ) : (
+            <span className="text-2xl flex mt-5">
               Please{" "}
-              <Link href={"/login"} className=" text-blue-500">
+              <Link href={"/login"} className=" text-blue-500 mx-2 underline">
                 Log in
               </Link>{" "}
-              to get new Offers !
+              to get new Offers
+              <div className="ml-2 underline text-red-600">& booking 😊</div>
             </span>
+          )}
         </div>
       </div>
     </>
@@ -82,5 +95,3 @@ const SingleHotel = ({params}) => {
 };
 
 export default SingleHotel;
-
-

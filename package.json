@@ -16,8 +16,10 @@
     "mongoose": "^8.0.3",
     "next": "14.0.4",
     "query-string": "^8.1.0",
+    "razorpay": "^2.9.2",
     "react": "^18",
     "react-dom": "^18",
+    "shortid": "^2.2.16",
     "sweetalert2": "^11.10.1"
   },
   "devDependencies": {
