@@ -39,20 +39,21 @@ const Header1 = () => {
         className=" w-28 h-28 "
       />
       <div className=" h-full flex">
-        <Block title={"Become a Member"} para={"Additional 0% off on stays."} />
+        <Block title={"Become a Member"} para={"Additional 0% off on stays."} img={"/1.svg"} />
         <Block
           title={"OYO for Business"}
           para={"Trusted by 5000 corporates."}
+          img={"/2.svg"}
         />
-        <Block title={"List your property"} para={"Start earning in 30 min."} />
-        <Block title={"987654321"} para={"Call us to book now."} />
+        <Block title={"List your property"} para={"Start earning in 30 min."} img={"/3.svg"} />
+        <Block title={"987654321"} para={"Call us to book now."} img={"/4.svg"} />
         <div className="flex items-center px-3 ">
           <Image
-            src={"/demo.svg"}
+            src={"/login.gif"}
             alt="demo"
             width={200}
             height={200}
-            className=" w-10 h-10 rounded-full mr-5"
+            className=" w-10 h-10 mr-5"
           />
           {auth ? (
             <h3
