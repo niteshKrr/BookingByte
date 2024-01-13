@@ -36,12 +36,12 @@ const Header1 = () => {
         alt="logo"
         width={200}
         height={200}
-        className=" w-28 h-28 "
+        className=" w-50 h-50 "
       />
       <div className=" h-full flex">
         <Block title={"Become a Member"} para={"Additional 0% off on stays."} img={"/1.svg"} />
         <Block
-          title={"OYO for Business"}
+          title={"BookingByte for Business"}
           para={"Trusted by 5000 corporates."}
           img={"/2.svg"}
         />

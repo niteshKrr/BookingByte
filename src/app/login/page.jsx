@@ -64,7 +64,7 @@ const Page = () => {
       </Head>
       <div className="flex h-screen justify-center items-center relative bg-login-background bg-no-repeat bg-cover opacity-85">
         <div className=" absolute w-full top-10 px-20 flex items-center text-white">
-          <h2 className="text-5xl font-bold mr-5">OYO</h2>
+          <h2 className="text-5xl font-bold mr-5">BookingByte</h2>
           <p className=" font-bold text-2xl  ">
             Hotels and homes across 800 cities, 24+ countries
           </p>
@@ -72,17 +72,17 @@ const Page = () => {
         <div className="flex justify-center items-center w-9/12">
           <div className=" text-white">
             <p className=" font-bold text-5xl text-justify">
-              There’s a smarter way to OYO around
+              There’s a smarter way to BookingByte around
             </p>
             <p className=" text-2xl mt-5 text-justify">
               Sign up with your phone number and get exclusive access to
-              discounts and savings on OYO stays and with our many travel
-              partners.
+              discounts and savings on BookingByte stays and with our many
+              travel partners.
             </p>
           </div>
           <div className=" ml-20 pb-40 w-10/12 border bg-slate-50 ">
             <p className="h-10 flex items-center px-10 bg-gradient-to-r from-red-300 to bg-red-600 text-lg font-bold text-white">
-              Sign up & Get ₹500 OYO Money
+              Sign up & Get ₹500 BookingByte Money
             </p>
             <div className="px-10">
               <h3 className=" text-5xl font-bold my-5">Login / Signup</h3>
