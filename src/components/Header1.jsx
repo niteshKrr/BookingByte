@@ -41,7 +41,7 @@ const Header1 = () => {
       <div className=" h-full flex">
         <Block title={"Become a Member"} para={"Additional 0% off on stays."} img={"/1.svg"} />
         <Block
-          title={"BookingByte for Business"}
+          title={"BB. for Business"}
           para={"Trusted by 5000 corporates."}
           img={"/2.svg"}
         />
