@@ -10,7 +10,7 @@ const Header3 = () => {
     <div className=" bg-gradient-to-r from-red-600 to-red-400 h-60">
       <div className=" p-5">
         <h2 className=" text-4xl text-white text-center font-bold">
-          Over 157,000 hotels and homes across 35 countries
+          Over 157,000 hotels and homes across 35 countries...
         </h2>
         <div className="flex justify-center my-5 mx-20 ">
           <input
